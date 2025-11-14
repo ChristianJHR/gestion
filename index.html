@@ -22,6 +22,17 @@
             --transition: all 0.3s ease;
         }
 
+        .dark-theme {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #94a3b8;
+            --light: #1e293b;
+            --dark: #f1f5f9;
+            --gray: #cbd5e1;
+            --gray-light: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -30,12 +41,13 @@
         }
 
         body {
-            background-color: #f1f5f9;
+            background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            transition: var(--transition);
         }
 
         .container {
@@ -47,11 +59,12 @@
 
         /* Header */
         header {
-            background-color: white;
+            background-color: var(--light);
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: var(--transition);
         }
 
         .header-content {
@@ -138,13 +151,14 @@
         /* Sidebar */
         .sidebar {
             width: 250px;
-            background-color: white;
+            background-color: var(--light);
             box-shadow: var(--shadow);
             padding: 20px 0;
             height: calc(100vh - 70px);
             position: sticky;
             top: 70px;
             overflow-y: auto;
+            transition: var(--transition);
         }
 
         .sidebar-title {
@@ -178,9 +192,9 @@
         }
 
         .sidebar-menu a:hover, .sidebar-menu a.active {
-            background-color: var(--primary-light);
-            color: var(--primary);
-            border-left-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+            border-left-color: var(--primary-dark);
         }
 
         .sidebar-menu i {
@@ -192,8 +206,9 @@
         .content {
             flex: 1;
             padding: 30px;
-            background-color: #f9f9f9;
+            background-color: var(--light);
             overflow-y: auto;
+            transition: var(--transition);
         }
 
         .tab-content {
@@ -267,13 +282,14 @@
         }
 
         .stat-card {
-            background-color: white;
+            background-color: var(--light);
             border-radius: var(--border-radius);
             padding: 25px;
             box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
             gap: 10px;
+            transition: var(--transition);
         }
 
         .stat-card i {
@@ -294,10 +310,11 @@
         /* Team Section */
         .team-section {
             padding: 50px 0;
-            background-color: white;
+            background-color: var(--light);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             margin-bottom: 40px;
+            transition: var(--transition);
         }
 
         .team-grid {
@@ -311,7 +328,7 @@
             text-align: center;
             padding: 20px;
             border-radius: var(--border-radius);
-            background-color: var(--light);
+            background-color: var(--gray-light);
             transition: var(--transition);
         }
 
@@ -345,11 +362,12 @@
 
         /* Repositories */
         .repositories {
-            background-color: white;
+            background-color: var(--light);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             overflow: hidden;
             margin-bottom: 40px;
+            transition: var(--transition);
         }
 
         .repositories-header {
@@ -367,7 +385,7 @@
         .search-box {
             display: flex;
             align-items: center;
-            background-color: var(--light);
+            background-color: var(--gray-light);
             border-radius: var(--border-radius);
             padding: 8px 15px;
             width: 300px;
@@ -379,6 +397,7 @@
             outline: none;
             width: 100%;
             padding: 5px;
+            color: var(--dark);
         }
 
         .repositories-list {
@@ -395,7 +414,7 @@
         }
 
         .repository-item:hover {
-            background-color: var(--light);
+            background-color: var(--gray-light);
         }
 
         .repository-info {
@@ -449,7 +468,7 @@
         }
 
         .doc-card {
-            background-color: white;
+            background-color: var(--light);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             overflow: hidden;
@@ -502,11 +521,12 @@
 
         /* Upload Section */
         .upload-section {
-            background-color: white;
+            background-color: var(--light);
             border-radius: var(--border-radius);
             padding: 30px;
             box-shadow: var(--shadow);
             margin-bottom: 30px;
+            transition: var(--transition);
         }
 
         .upload-area {
@@ -521,7 +541,7 @@
 
         .upload-area:hover {
             border-color: var(--primary);
-            background-color: var(--light);
+            background-color: var(--gray-light);
         }
 
         .upload-area i {
@@ -544,7 +564,7 @@
         }
 
         .file-type-tag {
-            background-color: var(--light);
+            background-color: var(--gray-light);
             padding: 5px 10px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -553,11 +573,12 @@
 
         /* Code Section */
         .code-section {
-            background-color: white;
+            background-color: var(--light);
             border-radius: var(--border-radius);
             padding: 30px;
             box-shadow: var(--shadow);
             margin-bottom: 30px;
+            transition: var(--transition);
         }
 
         .code-editor {
@@ -570,6 +591,21 @@
             min-height: 200px;
             max-height: 400px;
             overflow: auto;
+            width: 100%;
+            resize: vertical;
+        }
+
+        .code-output {
+            background-color: #0f172a;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            color: white;
+            min-height: 100px;
+            max-height: 300px;
+            overflow: auto;
+            white-space: pre-wrap;
         }
 
         .code-actions {
@@ -593,12 +629,16 @@
         }
 
         .modal-content {
-            background-color: white;
+            background-color: var(--light);
             border-radius: var(--border-radius);
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
+            max-height: 90vh;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
         }
 
         .modal-header {
@@ -623,6 +663,8 @@
 
         .modal-body {
             padding: 20px;
+            overflow-y: auto;
+            flex: 1;
         }
 
         .form-group {
@@ -641,6 +683,9 @@
             border: 1px solid var(--gray-light);
             border-radius: var(--border-radius);
             font-size: 1rem;
+            background-color: var(--light);
+            color: var(--dark);
+            transition: var(--transition);
         }
 
         .form-control:focus {
@@ -659,9 +704,10 @@
         /* Footer */
         footer {
             background-color: var(--dark);
-            color: white;
+            color: var(--light);
             padding: 50px 0 20px;
             margin-top: auto;
+            transition: var(--transition);
         }
 
         .footer-content {
@@ -697,21 +743,39 @@
         }
 
         .footer-column a {
-            color: var(--gray-light);
+            color: var(--gray);
             text-decoration: none;
             transition: var(--transition);
         }
 
         .footer-column a:hover {
-            color: white;
+            color: var(--light);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gray-light);
+            border-top: 1px solid var(--gray-light);
+            color: var(--gray);
             font-size: 0.9rem;
+        }
+
+        /* File Preview */
+        .file-preview {
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .file-content {
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            background-color: var(--gray-light);
+            padding: 15px;
+            border-radius: var(--border-radius);
         }
 
         /* Responsive */
@@ -783,6 +847,9 @@
                     <span>TechKnowledge</span>
                 </div>
                 <div class="user-actions">
+                    <button class="btn btn-outline" id="themeToggle">
+                        <i class="fas fa-moon"></i> Tema Oscuro
+                    </button>
                     <button class="btn btn-outline">
                         <i class="fas fa-bell"></i>
                     </button>
@@ -807,6 +874,7 @@
                 <li><a href="#" data-tab="documentation"><i class="fas fa-book"></i> Documentación</a></li>
                 <li><a href="#" data-tab="upload"><i class="fas fa-upload"></i> Subir Archivos</a></li>
                 <li><a href="#" data-tab="code"><i class="fas fa-code"></i> Editor de Código</a></li>
+                <li><a href="#" data-tab="saved-code"><i class="fas fa-save"></i> Códigos Guardados</a></li>
                 <li><a href="#" data-tab="team"><i class="fas fa-users"></i> Nuestro Equipo</a></li>
                 <li><a href="#" data-tab="settings"><i class="fas fa-cog"></i> Configuración</a></li>
             </ul>
@@ -849,9 +917,9 @@
                                 <p>Documentos Técnicos</p>
                             </div>
                             <div class="stat-card">
-                                <i class="fas fa-users"></i>
-                                <h3>7</h3>
-                                <p>Colaboradores</p>
+                                <i class="fas fa-code"></i>
+                                <h3 id="codeCount">0</h3>
+                                <p>Códigos Guardados</p>
                             </div>
                             <div class="stat-card">
                                 <i class="fas fa-shield-alt"></i>
@@ -955,15 +1023,42 @@
                     </div>
                     <div class="form-group">
                         <label for="codeEditor">Código</label>
-                        <textarea id="codeEditor" class="form-control code-editor" rows="15" placeholder="Escribe tu código aquí..."></textarea>
+                        <textarea id="codeEditor" class="code-editor" rows="15" placeholder="Escribe tu código aquí..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="codeOutput">Salida</label>
+                        <div id="codeOutput" class="code-output">La salida aparecerá aquí después de ejecutar el código.</div>
                     </div>
                     <div class="code-actions">
                         <button class="btn btn-outline" id="clearCodeBtn">
                             <i class="fas fa-trash"></i> Limpiar
                         </button>
+                        <button class="btn btn-success" id="runCodeBtn">
+                            <i class="fas fa-play"></i> Ejecutar
+                        </button>
                         <button class="btn btn-primary" id="saveCodeBtn">
                             <i class="fas fa-save"></i> Guardar Código
                         </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saved Code Tab -->
+            <div class="tab-content" id="saved-code">
+                <h2 class="section-title">
+                    <i class="fas fa-save"></i> Códigos Guardados
+                </h2>
+                
+                <div class="repositories">
+                    <div class="repositories-header">
+                        <h2>Mis Códigos</h2>
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="codeSearch" placeholder="Buscar códigos...">
+                        </div>
+                    </div>
+                    <div class="repositories-list" id="savedCodeList">
+                        <!-- Los códigos guardados se cargarán dinámicamente aquí -->
                     </div>
                 </div>
             </div>
@@ -1006,14 +1101,14 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="theme">Tema</label>
-                        <select id="theme" class="form-control">
+                        <label for="themeSetting">Tema</label>
+                        <select id="themeSetting" class="form-control">
                             <option value="light">Claro</option>
                             <option value="dark">Oscuro</option>
                             <option value="auto">Automático</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" id="saveSettingsBtn">
                         <i class="fas fa-save"></i> Guardar Configuración
                     </button>
                 </div>
@@ -1128,6 +1223,41 @@
         </div>
     </div>
 
+    <!-- Modal para ver detalles -->
+    <div class="modal" id="viewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="viewModalTitle">Detalles</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="viewModalBody">
+                <!-- El contenido se cargará dinámicamente aquí -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="closeViewBtn">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para ver archivos -->
+    <div class="modal" id="fileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="fileModalTitle">Archivo</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="fileModalBody">
+                <!-- El contenido del archivo se cargará dinámicamente aquí -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="closeFileBtn">Cerrar</button>
+                <button class="btn btn-primary" id="downloadFileBtn">
+                    <i class="fas fa-download"></i> Descargar
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1171,14 +1301,14 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 TechKnowledge. Todos los derechos reservados.</p>
+                <p>&copy; 2023 TechKnowledge. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Datos iniciales de ejemplo
-        let repositories = [
+        // Cargar datos del localStorage o inicializar si no existen
+        let repositories = JSON.parse(localStorage.getItem('repositories')) || [
             {
                 id: 1,
                 name: "migracion-datos-sql",
@@ -1208,7 +1338,7 @@
             }
         ];
 
-        let documentation = [
+        let documentation = JSON.parse(localStorage.getItem('documentation')) || [
             {
                 id: 1,
                 title: "Estándar de Documentación de Código",
@@ -1235,6 +1365,9 @@
             }
         ];
 
+        let savedCode = JSON.parse(localStorage.getItem('savedCode')) || [];
+        let uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles')) || [];
+
         // Datos del equipo
         const teamMembers = [
             { name: "Leonardo Hernández", role: "Desarrollador Senior" },
@@ -1249,28 +1382,44 @@
         // Elementos del DOM
         const repoModal = document.getElementById('repoModal');
         const docModal = document.getElementById('docModal');
+        const viewModal = document.getElementById('viewModal');
+        const fileModal = document.getElementById('fileModal');
         const repoForm = document.getElementById('repoForm');
         const docForm = document.getElementById('docForm');
         const repositoriesList = document.getElementById('repositoriesList');
         const docsGrid = document.getElementById('docsGrid');
+        const savedCodeList = document.getElementById('savedCodeList');
         const teamGrid = document.getElementById('teamGrid');
         const repoCount = document.getElementById('repoCount');
         const docCount = document.getElementById('docCount');
+        const codeCount = document.getElementById('codeCount');
         const repoSearch = document.getElementById('repoSearch');
+        const codeSearch = document.getElementById('codeSearch');
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('fileInput');
-        const uploadedFiles = document.getElementById('uploadedFiles');
+        const uploadedFilesContainer = document.getElementById('uploadedFiles');
         const codeEditor = document.getElementById('codeEditor');
+        const codeOutput = document.getElementById('codeOutput');
         const clearCodeBtn = document.getElementById('clearCodeBtn');
+        const runCodeBtn = document.getElementById('runCodeBtn');
         const saveCodeBtn = document.getElementById('saveCodeBtn');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeSetting = document.getElementById('themeSetting');
+        const saveSettingsBtn = document.getElementById('saveSettingsBtn');
         const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
         const tabContents = document.querySelectorAll('.tab-content');
 
         // Inicializar la aplicación
         document.addEventListener('DOMContentLoaded', function() {
+            // Cargar tema guardado
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+            
             renderRepositories();
             renderDocumentation();
+            renderSavedCode();
             renderTeam();
+            renderUploadedFiles();
             updateStats();
 
             // Event listeners para los botones de agregar
@@ -1286,6 +1435,8 @@
 
             document.getElementById('cancelRepoBtn').addEventListener('click', closeModals);
             document.getElementById('cancelDocBtn').addEventListener('click', closeModals);
+            document.getElementById('closeViewBtn').addEventListener('click', closeModals);
+            document.getElementById('closeFileBtn').addEventListener('click', closeModals);
 
             // Event listeners para guardar
             document.getElementById('saveRepoBtn').addEventListener('click', saveRepository);
@@ -1293,6 +1444,7 @@
 
             // Event listener para búsqueda
             repoSearch.addEventListener('input', filterRepositories);
+            codeSearch.addEventListener('input', filterSavedCode);
 
             // Event listeners para subir archivos
             uploadArea.addEventListener('click', () => fileInput.click());
@@ -1300,7 +1452,12 @@
 
             // Event listeners para editor de código
             clearCodeBtn.addEventListener('click', clearCodeEditor);
+            runCodeBtn.addEventListener('click', runCode);
             saveCodeBtn.addEventListener('click', saveCode);
+
+            // Event listeners para tema
+            themeToggle.addEventListener('click', toggleTheme);
+            saveSettingsBtn.addEventListener('click', saveSettings);
 
             // Event listeners para navegación de pestañas
             sidebarLinks.forEach(link => {
@@ -1326,8 +1483,46 @@
             window.addEventListener('click', (e) => {
                 if (e.target === repoModal) closeModals();
                 if (e.target === docModal) closeModals();
+                if (e.target === viewModal) closeModals();
+                if (e.target === fileModal) closeModals();
             });
         });
+
+        // Funciones para guardar datos en localStorage
+        function saveToLocalStorage() {
+            localStorage.setItem('repositories', JSON.stringify(repositories));
+            localStorage.setItem('documentation', JSON.stringify(documentation));
+            localStorage.setItem('savedCode', JSON.stringify(savedCode));
+            localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
+            updateStats();
+        }
+
+        // Funciones para tema
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Tema Claro';
+                themeSetting.value = 'dark';
+            } else {
+                document.body.classList.remove('dark-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Tema Oscuro';
+                themeSetting.value = 'light';
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        function toggleTheme() {
+            if (document.body.classList.contains('dark-theme')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        }
+
+        function saveSettings() {
+            setTheme(themeSetting.value);
+            alert('Configuración guardada correctamente');
+        }
 
         // Funciones para repositorios
         function openRepoModal(repo = null) {
@@ -1386,7 +1581,7 @@
             }
 
             renderRepositories();
-            updateStats();
+            saveToLocalStorage();
             closeModals();
         }
 
@@ -1401,7 +1596,37 @@
             if (confirm('¿Estás seguro de que quieres eliminar este repositorio?')) {
                 repositories = repositories.filter(repo => repo.id !== id);
                 renderRepositories();
-                updateStats();
+                saveToLocalStorage();
+            }
+        }
+
+        function viewRepository(id) {
+            const repo = repositories.find(repo => repo.id === id);
+            if (repo) {
+                document.getElementById('viewModalTitle').textContent = repo.name;
+                document.getElementById('viewModalBody').innerHTML = `
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <p>${repo.description}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Lenguaje</label>
+                        <p>${repo.language}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Estrellas</label>
+                        <p>${repo.stars}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Ramas</label>
+                        <p>${repo.branches}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Última actualización</label>
+                        <p>${repo.updated}</p>
+                    </div>
+                `;
+                viewModal.style.display = 'flex';
             }
         }
 
@@ -1463,13 +1688,6 @@
                 
                 repositoriesList.appendChild(repoItem);
             });
-        }
-
-        function viewRepository(id) {
-            const repo = repositories.find(repo => repo.id === id);
-            if (repo) {
-                alert(`Vista detallada del repositorio: ${repo.name}\n\nDescripción: ${repo.description}\nLenguaje: ${repo.language}\nEstrellas: ${repo.stars}\nRamas: ${repo.branches}`);
-            }
         }
 
         function filterRepositories() {
@@ -1545,7 +1763,7 @@
             }
 
             renderDocumentation();
-            updateStats();
+            saveToLocalStorage();
             closeModals();
         }
 
@@ -1560,7 +1778,33 @@
             if (confirm('¿Estás seguro de que quieres eliminar esta documentación?')) {
                 documentation = documentation.filter(doc => doc.id !== id);
                 renderDocumentation();
-                updateStats();
+                saveToLocalStorage();
+            }
+        }
+
+        function viewDocumentation(id) {
+            const doc = documentation.find(doc => doc.id === id);
+            if (doc) {
+                document.getElementById('viewModalTitle').textContent = doc.title;
+                document.getElementById('viewModalBody').innerHTML = `
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <p>${doc.description}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Autor</label>
+                        <p>${doc.author}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo</label>
+                        <p>${doc.type}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <p>${formatDate(doc.date)}</p>
+                    </div>
+                `;
+                viewModal.style.display = 'flex';
             }
         }
 
@@ -1616,11 +1860,323 @@
             });
         }
 
-        function viewDocumentation(id) {
-            const doc = documentation.find(doc => doc.id === id);
-            if (doc) {
-                alert(`Vista detallada del documento: ${doc.title}\n\nDescripción: ${doc.description}\nAutor: ${doc.author}\nTipo: ${doc.type}\nFecha: ${formatDate(doc.date)}`);
+        // Funciones para subir archivos
+        function handleFileUpload(e) {
+            const files = e.target.files;
+            if (files.length === 0) return;
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const fileData = {
+                        id: Date.now() + i,
+                        name: file.name,
+                        size: file.size,
+                        type: file.type,
+                        content: e.target.result,
+                        uploaded: new Date().toISOString()
+                    };
+                    
+                    uploadedFiles.push(fileData);
+                    saveToLocalStorage();
+                    renderUploadedFiles();
+                };
+                
+                reader.readAsDataURL(file);
             }
+            
+            // Limpiar el input
+            fileInput.value = '';
+        }
+
+        function viewFile(id) {
+            const file = uploadedFiles.find(f => f.id === id);
+            if (file) {
+                document.getElementById('fileModalTitle').textContent = file.name;
+                
+                let content = '';
+                if (file.type.startsWith('text/') || file.name.endsWith('.js') || file.name.endsWith('.py') || 
+                    file.name.endsWith('.java') || file.name.endsWith('.sql') || file.name.endsWith('.html') || 
+                    file.name.endsWith('.css') || file.name.endsWith('.php')) {
+                    // Para archivos de texto, mostrar el contenido
+                    const textContent = atob(file.content.split(',')[1]);
+                    content = `<div class="file-content">${escapeHtml(textContent)}</div>`;
+                } else if (file.type.startsWith('image/')) {
+                    // Para imágenes, mostrar la imagen
+                    content = `<img src="${file.content}" alt="${file.name}" style="max-width: 100%;">`;
+                } else {
+                    // Para otros tipos de archivo, mostrar información
+                    content = `
+                        <p>No se puede previsualizar este tipo de archivo.</p>
+                        <p><strong>Tipo:</strong> ${file.type}</p>
+                        <p><strong>Tamaño:</strong> ${formatFileSize(file.size)}</p>
+                        <p><strong>Subido:</strong> ${formatDate(file.uploaded)}</p>
+                    `;
+                }
+                
+                document.getElementById('fileModalBody').innerHTML = content;
+                
+                // Configurar el botón de descarga
+                document.getElementById('downloadFileBtn').onclick = function() {
+                    downloadFile(file);
+                };
+                
+                fileModal.style.display = 'flex';
+            }
+        }
+
+        function downloadFile(file) {
+            const a = document.createElement('a');
+            a.href = file.content;
+            a.download = file.name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function deleteFile(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar este archivo?')) {
+                uploadedFiles = uploadedFiles.filter(f => f.id !== id);
+                saveToLocalStorage();
+                renderUploadedFiles();
+            }
+        }
+
+        function renderUploadedFiles() {
+            uploadedFilesContainer.innerHTML = '';
+            
+            if (uploadedFiles.length === 0) {
+                uploadedFilesContainer.innerHTML = '<div class="repository-item"><p>No hay archivos subidos.</p></div>';
+                return;
+            }
+            
+            uploadedFiles.forEach(file => {
+                const fileElement = document.createElement('div');
+                fileElement.className = 'repository-item';
+                
+                const fileIcon = getFileIcon(file.name);
+                const fileSize = formatFileSize(file.size);
+                
+                fileElement.innerHTML = `
+                    <div class="repository-info">
+                        <div class="repo-icon">
+                            <i class="${fileIcon}"></i>
+                        </div>
+                        <div class="repo-details">
+                            <h3>${file.name}</h3>
+                            <p>${fileSize} • Subido ${formatDate(file.uploaded)}</p>
+                        </div>
+                    </div>
+                    <div class="repo-actions">
+                        <button class="btn btn-outline" onclick="viewFile(${file.id})">
+                            <i class="fas fa-eye"></i> Ver
+                        </button>
+                        <button class="btn btn-primary" onclick="downloadFile(${file.id})">
+                            <i class="fas fa-download"></i> Descargar
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteFile(${file.id})">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </div>
+                `;
+                
+                uploadedFilesContainer.appendChild(fileElement);
+            });
+        }
+
+        function getFileIcon(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            const iconMap = {
+                'pdf': 'fas fa-file-pdf',
+                'doc': 'fas fa-file-word',
+                'docx': 'fas fa-file-word',
+                'js': 'fab fa-js',
+                'py': 'fab fa-python',
+                'java': 'fas fa-coffee',
+                'sql': 'fas fa-database',
+                'zip': 'fas fa-file-archive',
+                'rar': 'fas fa-file-archive',
+                'html': 'fab fa-html5',
+                'css': 'fab fa-css3',
+                'php': 'fab fa-php',
+                'txt': 'fas fa-file-alt',
+                'json': 'fas fa-file-code'
+            };
+            
+            return iconMap[ext] || 'fas fa-file';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Funciones para editor de código
+        function clearCodeEditor() {
+            if (confirm('¿Estás seguro de que quieres limpiar el editor?')) {
+                codeEditor.value = '';
+                codeOutput.textContent = 'La salida aparecerá aquí después de ejecutar el código.';
+            }
+        }
+
+        function runCode() {
+            const code = codeEditor.value;
+            const language = document.getElementById('codeLanguage').value;
+            
+            if (!code.trim()) {
+                codeOutput.textContent = 'Por favor, escribe algún código para ejecutar.';
+                return;
+            }
+            
+            // Simular ejecución de código (en un entorno real esto se haría en el servidor)
+            let output = '';
+            
+            try {
+                if (language === 'javascript') {
+                    // Para JavaScript, usar eval (con precaución)
+                    output = eval(code);
+                } else if (language === 'python') {
+                    output = 'Ejecución de Python simulada: ' + code;
+                } else if (language === 'java') {
+                    output = 'Ejecución de Java simulada: ' + code;
+                } else if (language === 'sql') {
+                    output = 'Ejecución de SQL simulada: ' + code;
+                } else {
+                    output = 'Ejecución simulada: ' + code;
+                }
+                
+                codeOutput.textContent = output !== undefined ? String(output) : 'Código ejecutado sin salida.';
+            } catch (error) {
+                codeOutput.textContent = 'Error: ' + error.message;
+            }
+        }
+
+        function saveCode() {
+            const title = document.getElementById('codeTitle').value;
+            const language = document.getElementById('codeLanguage').value;
+            const code = codeEditor.value;
+            
+            if (!title || !code) {
+                alert('Por favor, completa el título y el código.');
+                return;
+            }
+            
+            const codeData = {
+                id: Date.now(),
+                title,
+                language,
+                code,
+                saved: new Date().toISOString()
+            };
+            
+            savedCode.push(codeData);
+            saveToLocalStorage();
+            renderSavedCode();
+            
+            alert('Código guardado correctamente.');
+        }
+
+        function viewSavedCode(id) {
+            const code = savedCode.find(c => c.id === id);
+            if (code) {
+                document.getElementById('viewModalTitle').textContent = code.title;
+                document.getElementById('viewModalBody').innerHTML = `
+                    <div class="form-group">
+                        <label>Lenguaje</label>
+                        <p>${code.language}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Código</label>
+                        <div class="file-content">${escapeHtml(code.code)}</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Guardado</label>
+                        <p>${formatDate(code.saved)}</p>
+                    </div>
+                `;
+                viewModal.style.display = 'flex';
+            }
+        }
+
+        function deleteSavedCode(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar este código?')) {
+                savedCode = savedCode.filter(c => c.id !== id);
+                saveToLocalStorage();
+                renderSavedCode();
+            }
+        }
+
+        function renderSavedCode() {
+            savedCodeList.innerHTML = '';
+            
+            if (savedCode.length === 0) {
+                savedCodeList.innerHTML = '<div class="repository-item"><p>No hay códigos guardados.</p></div>';
+                return;
+            }
+            
+            savedCode.forEach(code => {
+                const codeItem = document.createElement('div');
+                codeItem.className = 'repository-item';
+                
+                const languageIcons = {
+                    'javascript': 'fab fa-js',
+                    'python': 'fab fa-python',
+                    'java': 'fab fa-java',
+                    'sql': 'fas fa-database',
+                    'html': 'fab fa-html5',
+                    'css': 'fab fa-css3',
+                    'php': 'fab fa-php'
+                };
+                
+                const iconClass = languageIcons[code.language] || 'fas fa-code';
+                
+                codeItem.innerHTML = `
+                    <div class="repository-info">
+                        <div class="repo-icon">
+                            <i class="${iconClass}"></i>
+                        </div>
+                        <div class="repo-details">
+                            <h3>${code.title}</h3>
+                            <p>${code.language} • ${formatDate(code.saved)}</p>
+                            <div class="repo-meta">
+                                <span><i class="fas fa-code"></i> ${code.language}</span>
+                                <span><i class="fas fa-calendar"></i> ${formatDate(code.saved)}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="repo-actions">
+                        <button class="btn btn-outline" onclick="viewSavedCode(${code.id})">
+                            <i class="fas fa-eye"></i> Ver
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteSavedCode(${code.id})">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </div>
+                `;
+                
+                savedCodeList.appendChild(codeItem);
+            });
+        }
+
+        function filterSavedCode() {
+            const searchTerm = codeSearch.value.toLowerCase();
+            const codeItems = document.querySelectorAll('#savedCodeList .repository-item');
+            
+            codeItems.forEach(item => {
+                const codeTitle = item.querySelector('h3').textContent.toLowerCase();
+                const codeLang = item.querySelector('.repo-meta span:first-child').textContent.toLowerCase();
+                
+                if (codeTitle.includes(searchTerm) || codeLang.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         }
 
         // Funciones para el equipo
@@ -1646,112 +2202,29 @@
             });
         }
 
-        // Funciones para subir archivos
-        function handleFileUpload(e) {
-            const files = e.target.files;
-            if (files.length === 0) return;
-            
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                displayUploadedFile(file);
-            }
-            
-            // Limpiar el input
-            fileInput.value = '';
-        }
-
-        function displayUploadedFile(file) {
-            const fileElement = document.createElement('div');
-            fileElement.className = 'repository-item';
-            
-            const fileIcon = getFileIcon(file.name);
-            const fileSize = formatFileSize(file.size);
-            
-            fileElement.innerHTML = `
-                <div class="repository-info">
-                    <div class="repo-icon">
-                        <i class="${fileIcon}"></i>
-                    </div>
-                    <div class="repo-details">
-                        <h3>${file.name}</h3>
-                        <p>${fileSize} • Subido hace unos momentos</p>
-                    </div>
-                </div>
-                <div class="repo-actions">
-                    <button class="btn btn-outline">
-                        <i class="fas fa-eye"></i> Ver
-                    </button>
-                    <button class="btn btn-primary">
-                        <i class="fas fa-download"></i> Descargar
-                    </button>
-                </div>
-            `;
-            
-            uploadedFiles.appendChild(fileElement);
-        }
-
-        function getFileIcon(filename) {
-            const ext = filename.split('.').pop().toLowerCase();
-            const iconMap = {
-                'pdf': 'fas fa-file-pdf',
-                'doc': 'fas fa-file-word',
-                'docx': 'fas fa-file-word',
-                'js': 'fab fa-js',
-                'py': 'fab fa-python',
-                'java': 'fas fa-coffee',
-                'sql': 'fas fa-database',
-                'zip': 'fas fa-file-archive',
-                'rar': 'fas fa-file-archive',
-                'html': 'fab fa-html5',
-                'css': 'fab fa-css3'
-            };
-            
-            return iconMap[ext] || 'fas fa-file';
-        }
-
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-
-        // Funciones para editor de código
-        function clearCodeEditor() {
-            if (confirm('¿Estás seguro de que quieres limpiar el editor?')) {
-                codeEditor.value = '';
-            }
-        }
-
-        function saveCode() {
-            const title = document.getElementById('codeTitle').value;
-            const language = document.getElementById('codeLanguage').value;
-            const code = codeEditor.value;
-            
-            if (!title || !code) {
-                alert('Por favor, completa el título y el código.');
-                return;
-            }
-            
-            // Aquí normalmente se enviaría el código al servidor
-            alert(`Código guardado:\n\nTítulo: ${title}\nLenguaje: ${language}\n\nEl código se ha guardado correctamente.`);
-        }
-
         // Funciones auxiliares
         function updateStats() {
             repoCount.textContent = repositories.length;
             docCount.textContent = documentation.length;
+            codeCount.textContent = savedCode.length;
         }
 
         function closeModals() {
             repoModal.style.display = 'none';
             docModal.style.display = 'none';
+            viewModal.style.display = 'none';
+            fileModal.style.display = 'none';
         }
 
         function formatDate(dateString) {
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             return new Date(dateString).toLocaleDateString('es-ES', options);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
     </script>
 </body>
