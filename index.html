@@ -33,6 +33,9 @@
             background-color: #f1f5f9;
             color: var(--dark);
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .container {
@@ -69,39 +72,6 @@
 
         .logo i {
             font-size: 1.8rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--secondary);
-            font-weight: 500;
-            transition: var(--transition);
-            padding: 5px 0;
-            position: relative;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a.active {
-            color: var(--primary);
-        }
-
-        nav a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary);
         }
 
         .user-actions {
@@ -157,6 +127,81 @@
 
         .btn-danger:hover {
             background-color: #dc2626;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            box-shadow: var(--shadow);
+            padding: 20px 0;
+            height: calc(100vh - 70px);
+            position: sticky;
+            top: 70px;
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            padding: 0 20px 15px;
+            border-bottom: 1px solid var(--gray-light);
+            margin-bottom: 15px;
+        }
+
+        .sidebar-title h2 {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .sidebar-menu i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 30px;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         /* Hero Section */
@@ -455,6 +500,84 @@
             margin-top: 15px;
         }
 
+        /* Upload Section */
+        .upload-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--gray-light);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background-color: var(--light);
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .upload-area p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .file-types {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .file-type-tag {
+            background-color: var(--light);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Code Section */
+        .code-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .code-editor {
+            background-color: #1e293b;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            color: white;
+            min-height: 200px;
+            max-height: 400px;
+            overflow: auto;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
         /* Modal */
         .modal {
             display: none;
@@ -538,6 +661,7 @@
             background-color: var(--dark);
             color: white;
             padding: 50px 0 20px;
+            margin-top: auto;
         }
 
         .footer-content {
@@ -592,12 +716,18 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .header-content {
+            .main-layout {
                 flex-direction: column;
-                gap: 15px;
             }
 
-            nav ul {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+
+            .header-content {
+                flex-direction: column;
                 gap: 15px;
             }
 
@@ -652,15 +782,6 @@
                     <i class="fas fa-brain"></i>
                     <span>TechKnowledge</span>
                 </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" class="active">Dashboard</a></li>
-                        <li><a href="#">Repositorios</a></li>
-                        <li><a href="#">Documentación</a></li>
-                        <li><a href="#">Equipo</a></li>
-                        <li><a href="#">Configuración</a></li>
-                    </ul>
-                </nav>
                 <div class="user-actions">
                     <button class="btn btn-outline">
                         <i class="fas fa-bell"></i>
@@ -673,98 +794,232 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Gestión del Conocimiento Técnico</h1>
-            <p>Centraliza, organiza y preserva el conocimiento técnico de tu equipo. Evita pérdidas de información y mejora la colaboración.</p>
-            <div class="hero-buttons">
-                <button class="btn btn-light" id="addRepoBtn">
-                    <i class="fas fa-plus"></i> Agregar Repositorio
-                </button>
-                <button class="btn btn-outline" style="background-color: rgba(255,255,255,0.2); color: white; border-color: white;" id="addDocBtn">
-                    <i class="fas fa-plus"></i> Agregar Documentación
-                </button>
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-title">
+                <h2>Navegación</h2>
             </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" data-tab="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#" data-tab="repositories"><i class="fas fa-code-branch"></i> Repositorios</a></li>
+                <li><a href="#" data-tab="documentation"><i class="fas fa-book"></i> Documentación</a></li>
+                <li><a href="#" data-tab="upload"><i class="fas fa-upload"></i> Subir Archivos</a></li>
+                <li><a href="#" data-tab="code"><i class="fas fa-code"></i> Editor de Código</a></li>
+                <li><a href="#" data-tab="team"><i class="fas fa-users"></i> Nuestro Equipo</a></li>
+                <li><a href="#" data-tab="settings"><i class="fas fa-cog"></i> Configuración</a></li>
+            </ul>
         </div>
-    </section>
 
-    <!-- Dashboard -->
-    <section class="dashboard">
-        <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
-            </h2>
-            
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <i class="fas fa-code-branch"></i>
-                    <h3 id="repoCount">0</h3>
-                    <p>Repositorios Activos</p>
+        <!-- Content Area -->
+        <div class="content">
+            <!-- Dashboard Tab -->
+            <div class="tab-content active" id="dashboard">
+                <section class="hero">
+                    <div class="container">
+                        <h1>Gestión del Conocimiento Técnico</h1>
+                        <p>Centraliza, organiza y preserva el conocimiento técnico de tu equipo. Evita pérdidas de información y mejora la colaboración.</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-light" id="addRepoBtn">
+                                <i class="fas fa-plus"></i> Agregar Repositorio
+                            </button>
+                            <button class="btn btn-outline" style="background-color: rgba(255,255,255,0.2); color: white; border-color: white;" id="addDocBtn">
+                                <i class="fas fa-plus"></i> Agregar Documentación
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="dashboard">
+                    <div class="container">
+                        <h2 class="section-title">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </h2>
+                        
+                        <div class="stats-cards">
+                            <div class="stat-card">
+                                <i class="fas fa-code-branch"></i>
+                                <h3 id="repoCount">0</h3>
+                                <p>Repositorios Activos</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-file-alt"></i>
+                                <h3 id="docCount">0</h3>
+                                <p>Documentos Técnicos</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-users"></i>
+                                <h3>7</h3>
+                                <p>Colaboradores</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h3>100%</h3>
+                                <p>Información Protegida</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Repositories Tab -->
+            <div class="tab-content" id="repositories">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-code-branch"></i> Repositorios
+                    </h2>
+                    <button class="btn btn-primary" id="addRepoBtn2">
+                        <i class="fas fa-plus"></i> Nuevo Repositorio
+                    </button>
                 </div>
-                <div class="stat-card">
-                    <i class="fas fa-file-alt"></i>
-                    <h3 id="docCount">0</h3>
-                    <p>Documentos Técnicos</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <h3>7</h3>
-                    <p>Colaboradores</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>100%</h3>
-                    <p>Información Protegida</p>
+
+                <div class="repositories">
+                    <div class="repositories-header">
+                        <h2>Repositorios Recientes</h2>
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="repoSearch" placeholder="Buscar repositorios...">
+                        </div>
+                    </div>
+                    <div class="repositories-list" id="repositoriesList">
+                        <!-- Los repositorios se cargarán dinámicamente aquí -->
+                    </div>
                 </div>
             </div>
 
-            <!-- Team Section -->
-            <div class="team-section">
+            <!-- Documentation Tab -->
+            <div class="tab-content" id="documentation">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-book"></i> Documentación Técnica
+                    </h2>
+                    <button class="btn btn-primary" id="addDocBtn2">
+                        <i class="fas fa-plus"></i> Nueva Documentación
+                    </button>
+                </div>
+                
+                <div class="docs-grid" id="docsGrid">
+                    <!-- La documentación se cargará dinámicamente aquí -->
+                </div>
+            </div>
+
+            <!-- Upload Tab -->
+            <div class="tab-content" id="upload">
+                <h2 class="section-title">
+                    <i class="fas fa-upload"></i> Subir Archivos
+                </h2>
+                
+                <div class="upload-section">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Arrastra y suelta archivos aquí</h3>
+                        <p>o haz clic para seleccionar archivos</p>
+                        <input type="file" id="fileInput" multiple style="display: none;">
+                        <div class="file-types">
+                            <span class="file-type-tag">PDF</span>
+                            <span class="file-type-tag">DOC/DOCX</span>
+                            <span class="file-type-tag">JS/PY/Java</span>
+                            <span class="file-type-tag">SQL</span>
+                            <span class="file-type-tag">ZIP/RAR</span>
+                        </div>
+                    </div>
+                    <div class="uploaded-files" id="uploadedFiles">
+                        <!-- Los archivos subidos aparecerán aquí -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Tab -->
+            <div class="tab-content" id="code">
+                <h2 class="section-title">
+                    <i class="fas fa-code"></i> Editor de Código
+                </h2>
+                
+                <div class="code-section">
+                    <div class="form-group">
+                        <label for="codeTitle">Título del Código</label>
+                        <input type="text" id="codeTitle" class="form-control" placeholder="Ej: Función de transferencia de datos">
+                    </div>
+                    <div class="form-group">
+                        <label for="codeLanguage">Lenguaje</label>
+                        <select id="codeLanguage" class="form-control">
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                            <option value="sql">SQL</option>
+                            <option value="html">HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="php">PHP</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="codeEditor">Código</label>
+                        <textarea id="codeEditor" class="form-control code-editor" rows="15" placeholder="Escribe tu código aquí..."></textarea>
+                    </div>
+                    <div class="code-actions">
+                        <button class="btn btn-outline" id="clearCodeBtn">
+                            <i class="fas fa-trash"></i> Limpiar
+                        </button>
+                        <button class="btn btn-primary" id="saveCodeBtn">
+                            <i class="fas fa-save"></i> Guardar Código
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Tab -->
+            <div class="tab-content" id="team">
                 <h2 class="section-title">
                     <i class="fas fa-users"></i> Nuestro Equipo
                 </h2>
-                <div class="team-grid" id="teamGrid">
-                    <!-- Los miembros del equipo se cargarán dinámicamente aquí -->
-                </div>
-            </div>
-
-            <div class="section-header">
-                <h2 class="section-title">
-                    <i class="fas fa-code-branch"></i> Repositorios
-                </h2>
-                <button class="btn btn-primary" id="addRepoBtn2">
-                    <i class="fas fa-plus"></i> Nuevo Repositorio
-                </button>
-            </div>
-
-            <div class="repositories">
-                <div class="repositories-header">
-                    <h2>Repositorios Recientes</h2>
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="repoSearch" placeholder="Buscar repositorios...">
+                
+                <div class="team-section">
+                    <div class="team-grid" id="teamGrid">
+                        <!-- Los miembros del equipo se cargarán dinámicamente aquí -->
                     </div>
                 </div>
-                <div class="repositories-list" id="repositoriesList">
-                    <!-- Los repositorios se cargarán dinámicamente aquí -->
-                </div>
             </div>
 
-            <div class="section-header">
+            <!-- Settings Tab -->
+            <div class="tab-content" id="settings">
                 <h2 class="section-title">
-                    <i class="fas fa-book"></i> Documentación Técnica
+                    <i class="fas fa-cog"></i> Configuración
                 </h2>
-                <button class="btn btn-primary" id="addDocBtn2">
-                    <i class="fas fa-plus"></i> Nueva Documentación
-                </button>
-            </div>
-            
-            <div class="docs-grid" id="docsGrid">
-                <!-- La documentación se cargará dinámicamente aquí -->
+                
+                <div class="upload-section">
+                    <h3>Preferencias del Sistema</h3>
+                    <div class="form-group">
+                        <label for="notifications">Notificaciones</label>
+                        <select id="notifications" class="form-control">
+                            <option value="enabled">Activadas</option>
+                            <option value="disabled">Desactivadas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="autoBackup">Backup Automático</label>
+                        <select id="autoBackup" class="form-control">
+                            <option value="daily">Diario</option>
+                            <option value="weekly">Semanal</option>
+                            <option value="monthly">Mensual</option>
+                            <option value="disabled">Desactivado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme">Tema</label>
+                        <select id="theme" class="form-control">
+                            <option value="light">Claro</option>
+                            <option value="dark">Oscuro</option>
+                            <option value="auto">Automático</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Guardar Configuración
+                    </button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Modal para agregar/editar repositorio -->
     <div class="modal" id="repoModal">
@@ -910,13 +1165,13 @@
                     <ul>
                         <li><i class="fas fa-envelope"></i> info@techknowledge.com</li>
                         <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Ciudad Tecnológica, CA</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Universidad del Caribe</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 TechKnowledge. Todos los derechos reservados.</p>
+                <p>&copy; 2025 TechKnowledge. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -1002,6 +1257,14 @@
         const repoCount = document.getElementById('repoCount');
         const docCount = document.getElementById('docCount');
         const repoSearch = document.getElementById('repoSearch');
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadedFiles = document.getElementById('uploadedFiles');
+        const codeEditor = document.getElementById('codeEditor');
+        const clearCodeBtn = document.getElementById('clearCodeBtn');
+        const saveCodeBtn = document.getElementById('saveCodeBtn');
+        const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+        const tabContents = document.querySelectorAll('.tab-content');
 
         // Inicializar la aplicación
         document.addEventListener('DOMContentLoaded', function() {
@@ -1030,6 +1293,34 @@
 
             // Event listener para búsqueda
             repoSearch.addEventListener('input', filterRepositories);
+
+            // Event listeners para subir archivos
+            uploadArea.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileUpload);
+
+            // Event listeners para editor de código
+            clearCodeBtn.addEventListener('click', clearCodeEditor);
+            saveCodeBtn.addEventListener('click', saveCode);
+
+            // Event listeners para navegación de pestañas
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tab = this.getAttribute('data-tab');
+                    
+                    // Actualizar el menú activo
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Mostrar la pestaña correspondiente
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tab) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
 
             // Cerrar modal al hacer clic fuera
             window.addEventListener('click', (e) => {
@@ -1353,6 +1644,98 @@
                 
                 teamGrid.appendChild(memberCard);
             });
+        }
+
+        // Funciones para subir archivos
+        function handleFileUpload(e) {
+            const files = e.target.files;
+            if (files.length === 0) return;
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                displayUploadedFile(file);
+            }
+            
+            // Limpiar el input
+            fileInput.value = '';
+        }
+
+        function displayUploadedFile(file) {
+            const fileElement = document.createElement('div');
+            fileElement.className = 'repository-item';
+            
+            const fileIcon = getFileIcon(file.name);
+            const fileSize = formatFileSize(file.size);
+            
+            fileElement.innerHTML = `
+                <div class="repository-info">
+                    <div class="repo-icon">
+                        <i class="${fileIcon}"></i>
+                    </div>
+                    <div class="repo-details">
+                        <h3>${file.name}</h3>
+                        <p>${fileSize} • Subido hace unos momentos</p>
+                    </div>
+                </div>
+                <div class="repo-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-eye"></i> Ver
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-download"></i> Descargar
+                    </button>
+                </div>
+            `;
+            
+            uploadedFiles.appendChild(fileElement);
+        }
+
+        function getFileIcon(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            const iconMap = {
+                'pdf': 'fas fa-file-pdf',
+                'doc': 'fas fa-file-word',
+                'docx': 'fas fa-file-word',
+                'js': 'fab fa-js',
+                'py': 'fab fa-python',
+                'java': 'fas fa-coffee',
+                'sql': 'fas fa-database',
+                'zip': 'fas fa-file-archive',
+                'rar': 'fas fa-file-archive',
+                'html': 'fab fa-html5',
+                'css': 'fab fa-css3'
+            };
+            
+            return iconMap[ext] || 'fas fa-file';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Funciones para editor de código
+        function clearCodeEditor() {
+            if (confirm('¿Estás seguro de que quieres limpiar el editor?')) {
+                codeEditor.value = '';
+            }
+        }
+
+        function saveCode() {
+            const title = document.getElementById('codeTitle').value;
+            const language = document.getElementById('codeLanguage').value;
+            const code = codeEditor.value;
+            
+            if (!title || !code) {
+                alert('Por favor, completa el título y el código.');
+                return;
+            }
+            
+            // Aquí normalmente se enviaría el código al servidor
+            alert(`Código guardado:\n\nTítulo: ${title}\nLenguaje: ${language}\n\nEl código se ha guardado correctamente.`);
         }
 
         // Funciones auxiliares
