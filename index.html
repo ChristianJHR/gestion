@@ -246,6 +246,58 @@
             color: var(--gray);
         }
 
+        /* Team Section */
+        .team-section {
+            padding: 50px 0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background-color: var(--light);
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .member-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .member-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
         /* Repositories */
         .repositories {
             background-color: white;
@@ -657,13 +709,23 @@
                 </div>
                 <div class="stat-card">
                     <i class="fas fa-users"></i>
-                    <h3>12</h3>
-                    <p>Miembros del Equipo</p>
+                    <h3>7</h3>
+                    <p>Colaboradores</p>
                 </div>
                 <div class="stat-card">
                     <i class="fas fa-shield-alt"></i>
                     <h3>100%</h3>
                     <p>Información Protegida</p>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="team-section">
+                <h2 class="section-title">
+                    <i class="fas fa-users"></i> Nuestro Equipo
+                </h2>
+                <div class="team-grid" id="teamGrid">
+                    <!-- Los miembros del equipo se cargarán dinámicamente aquí -->
                 </div>
             </div>
 
@@ -775,7 +837,16 @@
                     </div>
                     <div class="form-group">
                         <label for="docAuthor">Autor</label>
-                        <input type="text" id="docAuthor" class="form-control" required>
+                        <select id="docAuthor" class="form-control" required>
+                            <option value="">Selecciona un colaborador</option>
+                            <option value="Leonardo Hernández">Leonardo Hernández</option>
+                            <option value="Julian Dominguez">Julian Dominguez</option>
+                            <option value="Jose Ezequiel">Jose Ezequiel</option>
+                            <option value="Melina Rodriguez">Melina Rodriguez</option>
+                            <option value="Israel Alcocer">Israel Alcocer</option>
+                            <option value="Christian Hernandez">Christian Hernandez</option>
+                            <option value="Denilson Chin">Denilson Chin</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="docType">Tipo de Documento</label>
@@ -812,12 +883,15 @@
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Enlaces Rápidos</h3>
+                    <h3>Colaboradores</h3>
                     <ul>
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Repositorios</a></li>
-                        <li><a href="#">Documentación</a></li>
-                        <li><a href="#">Equipo</a></li>
+                        <li>Leonardo Hernández</li>
+                        <li>Julian Dominguez</li>
+                        <li>Jose Ezequiel</li>
+                        <li>Melina Rodriguez</li>
+                        <li>Israel Alcocer</li>
+                        <li>Christian Hernandez</li>
+                        <li>Denilson Chin</li>
                     </ul>
                 </div>
                 
@@ -884,7 +958,7 @@
                 id: 1,
                 title: "Estándar de Documentación de Código",
                 description: "Guía completa para documentar código según los estándares del equipo.",
-                author: "Ezequiel M.",
+                author: "Leonardo Hernández",
                 type: "Estándar",
                 date: "2023-10-15"
             },
@@ -892,7 +966,7 @@
                 id: 2,
                 title: "Procedimiento de Migración de Datos",
                 description: "Protocolo detallado para transferir datos entre sistemas sin pérdidas.",
-                author: "Ana L.",
+                author: "Julian Dominguez",
                 type: "Procedimiento",
                 date: "2023-11-02"
             },
@@ -900,10 +974,21 @@
                 id: 3,
                 title: "Política de Seguridad de Repositorios",
                 description: "Directrices para mantener la seguridad e integridad del código.",
-                author: "Carlos R.",
+                author: "Melina Rodriguez",
                 type: "Política",
                 date: "2023-09-28"
             }
+        ];
+
+        // Datos del equipo
+        const teamMembers = [
+            { name: "Leonardo Hernández", role: "Desarrollador Senior" },
+            { name: "Julian Dominguez", role: "Arquitecto de Software" },
+            { name: "Jose Ezequiel", role: "Especialista en Base de Datos" },
+            { name: "Melina Rodriguez", role: "Líder de Proyecto" },
+            { name: "Israel Alcocer", role: "Desarrollador Full Stack" },
+            { name: "Christian Hernandez", role: "Analista de Calidad" },
+            { name: "Denilson Chin", role: "DevOps Engineer" }
         ];
 
         // Elementos del DOM
@@ -913,6 +998,7 @@
         const docForm = document.getElementById('docForm');
         const repositoriesList = document.getElementById('repositoriesList');
         const docsGrid = document.getElementById('docsGrid');
+        const teamGrid = document.getElementById('teamGrid');
         const repoCount = document.getElementById('repoCount');
         const docCount = document.getElementById('docCount');
         const repoSearch = document.getElementById('repoSearch');
@@ -921,6 +1007,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             renderRepositories();
             renderDocumentation();
+            renderTeam();
             updateStats();
 
             // Event listeners para los botones de agregar
@@ -1243,6 +1330,29 @@
             if (doc) {
                 alert(`Vista detallada del documento: ${doc.title}\n\nDescripción: ${doc.description}\nAutor: ${doc.author}\nTipo: ${doc.type}\nFecha: ${formatDate(doc.date)}`);
             }
+        }
+
+        // Funciones para el equipo
+        function renderTeam() {
+            teamGrid.innerHTML = '';
+            
+            teamMembers.forEach(member => {
+                const memberCard = document.createElement('div');
+                memberCard.className = 'team-member';
+                
+                // Generar iniciales para el avatar
+                const initials = member.name.split(' ').map(n => n[0]).join('');
+                
+                memberCard.innerHTML = `
+                    <div class="member-avatar">
+                        ${initials}
+                    </div>
+                    <div class="member-name">${member.name}</div>
+                    <div class="member-role">${member.role}</div>
+                `;
+                
+                teamGrid.appendChild(memberCard);
+            });
         }
 
         // Funciones auxiliares
